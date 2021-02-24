@@ -17,14 +17,14 @@
 </template>
 
 <script>
-export default {
-  name: 'Footer',
-  data() {
-    return {
-      ripple: false
-    };
-  }
-};
+  export default {
+    name: 'Footer',
+    data() {
+      return {
+        ripple: false
+      };
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
