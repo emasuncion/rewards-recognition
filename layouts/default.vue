@@ -2,6 +2,7 @@
   <v-app id="rnr-app-main">
     <Header />
     <nuxt />
+    <Footer />
   </v-app>
 </template>
 
