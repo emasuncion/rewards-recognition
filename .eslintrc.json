@@ -1,15 +1,31 @@
-module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    es6: true,
-    node: true,
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
   },
-  parserOptions: {
-    parser: 'babel-eslint',
+  "extends": [
+    "airbnb-base",
+    "plugin:vue/recommended",
+    "plugin:nuxt/recommended"
+  ],
+  "globals": {
+    "expect": true
   },
-  extends: [
-    'plugin:nuxt/recommended',
+  "ignorePatterns": ["**/*.config.*"],
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "rules": {
+        "indent": "off"
+      }
+    },
+    {
+      "files": ["*.spec.js"],
+      "rules": {
+        "no-unused-expressions": "off"
+      }
+    }
   ],
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
@@ -17,10 +33,6 @@ module.exports = {
     "arrow-parens": ["error", "as-needed"],
     "class-methods-use-this": "off",
     "comma-dangle": ["error", "never"],
-    "import/extensions": ["error", "always", {
-      "js": "never"
-    }],
-    "import/no-extraneous-dependencies": "off",
     "indent": ["error", 2, {
       "SwitchCase": 1
     }],
@@ -32,7 +44,6 @@ module.exports = {
     }],
     "object-curly-spacing": ["error", "never"],
     "radix": ["error", "as-needed"],
-    "space-before-function-paren": ["error", "never"],
     "vue/html-indent": ["error", 2, {
       "attribute": 1,
       "closeBracket": 0,
@@ -51,5 +62,21 @@ module.exports = {
       "switchCase": 1,
       "ignores": []
     }]
+  },
+  "settings": {
+    "import/core-modules": [
+      "dotenv",
+      "vue",
+      "vuetify/es5/util/colors.js",
+      "vuex"
+    ],
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["~", "."],
+          ["@", "."]
+        ]
+      }
+    }
   }
 }
