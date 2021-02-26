@@ -6,8 +6,12 @@
   </v-app>
 </template>
 
-<style scoped>
+<style lang="scss">
+  html {
+    overflow: hidden !important;
+  }
+
   #rnr-app-main {
-    background: #111 url('/img/stars.png') repeat center;
+    background: #111 url('/img/stars.png') repeat center center;
   }
 </style>
