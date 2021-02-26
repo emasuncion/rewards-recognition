@@ -5,7 +5,11 @@
       src="/img/star_outline.svg"
       max-width="25%"
     />
-    <span :id="'rnr-'+className+'-text'" class="rnr-category-text">
+    <span
+      :id="'rnr-'+className+'-text'"
+      class="rnr-category-text"
+      @click="openCommendModal"
+    >
       {{ categoryName }}
     </span>
   </div>
@@ -22,6 +26,11 @@
       className: {
         type: String,
         default: () => {}
+      }
+    },
+    methods: {
+      openCommendModal() {
+        this.$emit('open', this.categoryName);
       }
     }
   };
