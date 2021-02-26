@@ -1,8 +1,7 @@
 <template>
   <v-footer
     id="rnr-footer"
-    class="ml-auto mr-6 mb-6"
-    absolute
+    class="ml-auto mr-6 mb-3"
     color="transparent"
     max-width="100%"
   >
