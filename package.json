@@ -14,7 +14,7 @@
     }
   ],
   "scripts": {
-    "covergae": "jest --coverage",
+    "coverage": "jest --coverage",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
