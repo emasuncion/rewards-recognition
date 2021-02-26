@@ -57,10 +57,6 @@
     name: 'Header',
     data() {
       return {
-        clipped: false,
-        closeOnClick: true,
-        drawer: false,
-        miniVariant: false,
         ripple: false
       };
     }
