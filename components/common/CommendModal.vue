@@ -83,8 +83,7 @@
       return {
         isFormValid: false,
         isSubmitButtonEnabled: false,
-        isOperationInProgress: false,
-        description: this.categoryDescription
+        isOperationInProgress: false
       };
     },
     watch: {

@@ -15,5 +15,5 @@ describe('Star component', () => {
     });
     wrapper.vm.openCommendModal();
     expect(wrapper.emitted('open')[0][0]).toEqual('Test Category')
-  })
+  });
 });
