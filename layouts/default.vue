@@ -8,7 +8,7 @@
 
 <style lang="scss">
   html {
-    overflow: hidden !important;
+    background: #111 url('/img/stars.png') repeat center center;
   }
 
   #rnr-app-main {

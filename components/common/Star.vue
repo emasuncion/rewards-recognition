@@ -35,6 +35,11 @@
 
   #rnr-people-developer-star {
     margin-left: 33% !important;
+    margin-top: -2% !important;
+  }
+
+  #rnr-business-operator-star {
+    margin-top: -2% !important;
   }
 
   #rnr-value-creator-text {
@@ -50,7 +55,7 @@
   #rnr-people-developer-text,
   #rnr-business-operator-text {
     color: #999;
-    margin-top: 7% !important;
+    margin-top: 1% !important;
 
     &:hover {
       color: #fff;
