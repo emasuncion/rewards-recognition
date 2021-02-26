@@ -41,16 +41,34 @@ After installing the dependencies, you can now serve the application
 $ yarn dev
 
 # build for production and launch server
-$ yarn build && yarn start
+$ yarn prod
 
 # generate static project
 $ yarn generate
+```
+
+## Running the tests
+
+To run the tests, you can issue the command
+```bash
+$ yarn test
+```
+
+To check the coverage only
+```bash
+$ yarn coverage
+```
+
+You can also run Jest in watch mode, if you're developing unit tests
+```bash
+$ yarn watch
 ```
 
 ## Built With
 
 * [NuxtJS](https://nuxtjs.org) - Vue framework used
 * [Vuetify](https://vuetifyjs.com) - UI library used
+* [Jest](https://jestjs.io/) - Testing framework
 
 ## Contributing
 
