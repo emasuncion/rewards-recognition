@@ -74,6 +74,7 @@
 
   #rnr-banner-title {
     padding-left: 16.7% !important;
+    color: #fff;
   }
 
   #rnr-leaderboard,

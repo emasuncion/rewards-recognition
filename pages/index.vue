@@ -17,27 +17,57 @@
       </v-col>
 
       <v-col cols="6">
-        <CommonStar category-name="Value Creator" class-name="value-creator" />
+        <CommonStar
+          category-name="Value Creator"
+          class-name="value-creator"
+          @open="openCommendModal"
+        />
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="6" offset-md="3">
-        <CommonStar category-name="People Developer" class-name="people-developer" />
+        <CommonStar
+          category-name="People Developer"
+          class-name="people-developer"
+          @open="openCommendModal"
+        />
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="6" offset-md="1">
-        <CommonStar category-name="Business Operator" class-name="business-operator" />
+        <CommonStar
+          category-name="Business Operator"
+          class-name="business-operator"
+          @open="openCommendModal"
+        />
       </v-col>
     </v-row>
+
+    <CommonCommendModal
+      v-if="isStarModalOpen"
+      v-model="isStarModalOpen"
+      :category-name="categoryName"
+    />
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Index'
+    name: 'Index',
+    data() {
+      return {
+        categoryName: '',
+        isStarModalOpen: false
+      };
+    },
+    methods: {
+      openCommendModal(categoryName) {
+        this.categoryName = categoryName;
+        this.isStarModalOpen = true;
+      }
+    }
   };
 </script>
 
@@ -46,5 +76,6 @@
     font-size: 1.75em;
     margin-top: 15%;
     text-align: center;
+    color: #fff;
   }
 </style>
