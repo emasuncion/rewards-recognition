@@ -9,18 +9,25 @@
       :max-height="$vuetify.breakpoint.mobile ? 65 : 80"
     >
       <v-row class="d-flex align-center justify-content px-md-10">
-        <img id="rnr-pte-logo" src="/img/pte_logo.png" />
+        <img id="rnr-pte-logo" src="/img/pte_logo.png">
         <h1
-          v-if="!$vuetify.breakpoint.mobile"
+          v-if="$vuetify.breakpoint.mdAndUp"
           id="rnr-banner-title"
           class="mt-md-10 pt-md-5"
         >
           REWARDS & RECOGNITION
         </h1>
+        <h1
+          v-if="$vuetify.breakpoint.smAndDown"
+          id="rnr-banner-title"
+          class="mt-10 pt-5"
+        >
+          R&R
+        </h1>
 
         <v-spacer />
 
-        <span v-if="!$vuetify.breakpoint.mobile">
+        <span v-if="!$vuetify.breakpoint.smAndDown">
           <v-btn
             id="rnr-leaderboard"
             class="mt-md-10 pt-md-5"
@@ -68,7 +75,7 @@
       </v-row>
 
       <v-app-bar-nav-icon
-        v-if="$vuetify.breakpoint.mobile"
+        v-if="$vuetify.breakpoint.smAndDown"
         class="mt-10"
         color="#999"
         @click.stop="drawer = !drawer"
@@ -76,6 +83,7 @@
     </v-app-bar>
 
     <v-navigation-drawer
+      v-if="$vuetify.breakpoint.smAndDown"
       v-model="drawer"
       app
       fixed
