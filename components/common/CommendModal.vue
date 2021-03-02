@@ -66,8 +66,7 @@
     props: {
       categoryName: {
         type: String,
-        required: true,
-        default: () => {}
+        required: true
       },
       persistent: {
         type: Boolean,

@@ -8,14 +8,17 @@
       flat
       :max-height="$vuetify.breakpoint.mobile ? 65 : 80"
     >
-      <v-row class="d-flex align-center" align="center">
-        <h1 id="rnr-banner-title" class="mx-md-auto">
+      <v-row class="d-flex align-center justify-content px-md-10">
+        <img id="rnr-pte-logo" src="/img/pte_logo.png" />
+        <h1 id="rnr-banner-title" class="mt-md-10 pt-md-5">
           REWARDS & RECOGNITION
         </h1>
 
+        <v-spacer />
+
         <v-btn
           id="rnr-leaderboard"
-          class="mx-md-4"
+          class="mt-md-10 pt-md-5"
           color="#999"
           :ripple="ripple"
           text
@@ -24,7 +27,7 @@
         </v-btn>
         <v-btn
           id="rnr-star-count"
-          class="mx-md-4"
+          class="mt-md-10 pt-md-5"
           color="#999"
           icon
           :ripple="ripple"
@@ -36,8 +39,17 @@
           0
         </v-btn>
         <v-btn
+          id="rnr-faq"
+          class="mt-md-10 pt-md-5"
+          color="#999"
+          :ripple="ripple"
+          text
+        >
+          FAQ
+        </v-btn>
+        <v-btn
           id="rnr-account"
-          class="mx-md-4 pr-md6"
+          class="mt-md-10 pt-md-5"
           color="#999"
           icon
           :ripple="ripple"
@@ -64,17 +76,18 @@
 </script>
 
 <style lang="scss" scoped>
-  #rnr-app-bar-navbar {
-    border-bottom: solid thin #95989A !important;
+  #rnr-pte-logo {
+    width: 6.5em;
+    margin-top: 4.1em;
   }
 
   #rnr-banner-title {
-    padding-left: 16.7% !important;
     color: #fff;
   }
 
   #rnr-leaderboard,
   #rnr-star-count,
+  #rnr-faq,
   #rnr-account {
     &:hover {
       color: #fff !important;
