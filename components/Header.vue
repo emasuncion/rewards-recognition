@@ -10,57 +10,136 @@
     >
       <v-row class="d-flex align-center justify-content px-md-10">
         <img id="rnr-pte-logo" src="/img/pte_logo.png" />
-        <h1 id="rnr-banner-title" class="mt-md-10 pt-md-5">
+        <h1
+          v-if="!$vuetify.breakpoint.mobile"
+          id="rnr-banner-title"
+          class="mt-md-10 pt-md-5"
+        >
           REWARDS & RECOGNITION
         </h1>
 
         <v-spacer />
 
-        <v-btn
-          id="rnr-leaderboard"
-          class="mt-md-10 pt-md-5"
-          color="#999"
-          :ripple="ripple"
-          text
-        >
-          Leaderboard
-        </v-btn>
-        <v-btn
-          id="rnr-star-count"
-          class="mt-md-10 pt-md-5"
-          color="#999"
-          icon
-          :ripple="ripple"
-          tile
-        >
-          <v-icon>
-            mdi-star
-          </v-icon>
-          0
-        </v-btn>
-        <v-btn
-          id="rnr-faq"
-          class="mt-md-10 pt-md-5"
-          color="#999"
-          :ripple="ripple"
-          text
-        >
-          FAQ
-        </v-btn>
-        <v-btn
-          id="rnr-account"
-          class="mt-md-10 pt-md-5"
-          color="#999"
-          icon
-          :ripple="ripple"
-          tile
-        >
-          <v-icon>
-            mdi-account
-          </v-icon>
-        </v-btn>
+        <span v-if="!$vuetify.breakpoint.mobile">
+          <v-btn
+            id="rnr-leaderboard"
+            class="mt-md-10 pt-md-5"
+            color="#999"
+            :ripple="ripple"
+            text
+          >
+            Leaderboard
+          </v-btn>
+          <v-btn
+            id="rnr-star-count"
+            class="mt-md-10 pt-md-5"
+            color="#999"
+            icon
+            :ripple="ripple"
+            tile
+          >
+            <v-icon>
+              mdi-star
+            </v-icon>
+            0
+          </v-btn>
+          <v-btn
+            id="rnr-faq"
+            class="mt-md-10 pt-md-5"
+            color="#999"
+            :ripple="ripple"
+            text
+          >
+            FAQ
+          </v-btn>
+          <v-btn
+            id="rnr-account"
+            class="mt-md-10 pt-md-5"
+            color="#999"
+            icon
+            :ripple="ripple"
+            tile
+          >
+            <v-icon>
+              mdi-account
+            </v-icon>
+          </v-btn>
+        </span>
       </v-row>
+
+      <v-app-bar-nav-icon
+        v-if="$vuetify.breakpoint.mobile"
+        class="mt-10"
+        color="#999"
+        @click.stop="drawer = !drawer"
+      />
     </v-app-bar>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      fixed
+      right
+    >
+      <v-list nav dense>
+        <v-list-item-group v-model="group">
+          <v-list-item>
+            <v-list-item-title>
+              Rewards & Recognition
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item>
+            <v-btn
+              id="rnr-leaderboard"
+              class="mx-auto"
+              color="#999"
+              :ripple="ripple"
+              text
+            >
+              Leaderboard
+            </v-btn>
+          </v-list-item>
+          <v-list-item>
+            <v-btn
+              id="rnr-star-count"
+              class="mx-auto"
+              color="#999"
+              icon
+              :ripple="ripple"
+              tile
+            >
+              <v-icon>
+                mdi-star
+              </v-icon>
+              0
+            </v-btn>
+          </v-list-item>
+          <v-list-item>
+            <v-btn
+              id="rnr-faq"
+              class="mx-auto"
+              color="#999"
+              :ripple="ripple"
+              text
+            >
+              FAQ
+            </v-btn>
+          </v-list-item>
+          <v-list-item>
+            <v-btn
+              id="rnr-account"
+              class="mx-auto"
+              color="#999"
+              icon
+              :ripple="ripple"
+              tile
+            >
+              Log out
+            </v-btn>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
   </v-container>
 </template>
 
@@ -69,6 +148,8 @@
     name: 'Header',
     data() {
       return {
+        drawer: false,
+        group: null,
         ripple: false
       };
     }
