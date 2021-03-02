@@ -1,7 +1,11 @@
 <template>
   <div id="rnr-content-container" class="mt-12 px-15">
     <v-row>
-      <v-col cols="6">
+      <v-col
+        cols="12"
+        sm="12"
+        md="6"
+      >
         <div class="rnr-strapline">
           <div>
             <em>
@@ -16,7 +20,11 @@
         </div>
       </v-col>
 
-      <v-col cols="6">
+      <v-col
+        cols="12"
+        sm="12"
+        md="6"
+      >
         <CommonStar
           category-name="Value Creator"
           class-name="value-creator"
@@ -26,7 +34,13 @@
     </v-row>
 
     <v-row>
-      <v-col cols="6" offset-md="3">
+      <v-col
+        id="rnr-star-container"
+        cols="12"
+        sm="12"
+        md="6"
+        offset-md="3"
+      >
         <CommonStar
           category-name="People Developer"
           class-name="people-developer"
@@ -36,7 +50,12 @@
     </v-row>
 
     <v-row>
-      <v-col cols="6" offset-md="1">
+      <v-col
+        cols="12"
+        sm="12"
+        md="6"
+        offset-md="1"
+      >
         <CommonStar
           category-name="Business Operator"
           class-name="business-operator"
@@ -76,6 +95,17 @@
     font-size: 1.75em;
     margin-top: 15%;
     text-align: center;
-    color: #fff;
+    color: $white;
+
+    @include xsOnly {
+      font-size: 1.5em;
+      margin-top: 3em;
+    }
+  }
+
+  #rnr-star-container {
+    @include xsOnly {
+      padding: 0 !important;
+    }
   }
 </style>

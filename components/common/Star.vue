@@ -40,11 +40,19 @@
   #rnr-value-creator-star {
     margin-top: 15% !important;
     margin-left: 45% !important;
+
+    @include xsOnly {
+      margin-left: 0 !important;
+    }
   }
 
   #rnr-people-developer-star {
     margin-left: 33% !important;
     margin-top: -2% !important;
+
+    @include xsOnly {
+      margin-left: 4% !important;
+    }
   }
 
   #rnr-business-operator-star {
@@ -74,5 +82,10 @@
 
   .rnr-category-text {
     font-size: 1.4em;
+
+    @include xsOnly {
+      font-size: 1.25em;
+      margin-left: 25px;
+    }
   }
 </style>

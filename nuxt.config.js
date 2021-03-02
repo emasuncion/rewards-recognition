@@ -27,7 +27,7 @@ export default {
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/scss/_colors.scss', '@/assets/scss/_mediaQueryMixins.scss'],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,10 +42,10 @@ export default {
     '@nuxtjs/vuetify',
   ],
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxtjs/style-resources'],
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/scss/_variables.scss'],
     theme: {
       dark: false,
       themes: {
@@ -63,4 +63,7 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  styleResources: {
+    scss: ['@/assets/scss/*.scss']
+  }
 }
