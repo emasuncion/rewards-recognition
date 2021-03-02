@@ -21,11 +21,11 @@
     props: {
       categoryName: {
         type: String,
-        default: () => {}
+        required: true
       },
       className: {
         type: String,
-        default: () => {}
+        required: true
       }
     },
     methods: {
