@@ -1,6 +1,6 @@
 import {shallowMount} from '@vue/test-utils';
 
-import vuetify from '@/jest.setup'
+import vuetify from '@/jest.setup';
 import HeaderComponent from '@/components/Header.vue';
 
 describe('Header component', () => {
