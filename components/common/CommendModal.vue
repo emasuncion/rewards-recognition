@@ -1,17 +1,20 @@
 <template>
-  <v-container>
+  <v-container id="rnr-star-modal-container">
     <CommonStarModal
       :value="value"
       :persistent="persistent"
+      class="rnr-star-modal-contents"
       @input="$emit('input', arguments[0])"
     >
       <v-card class="pt-5 px-10 pb-7">
         <v-card-title class="px-auto headline d-flex justify-center" primary-title>
           {{ categoryName }}
         </v-card-title>
-        <v-card-subtitle class="d-flex justify-center py-3">
-          A chance to be acknowledged;
-          A chance to commend fellow colleagues.
+        <v-card-subtitle class="d-flex justify-center py-3 sub-center">
+          {{ categorySubtitle1 }}
+        </v-card-subtitle>
+        <v-card-subtitle class="d-flex justify-center py-3 sub-center">
+          {{ categorySubtitle2 }}
         </v-card-subtitle>
 
         <v-card-text>
@@ -80,10 +83,36 @@
     },
     data() {
       return {
+        description: '',
         isFormValid: false,
         isSubmitButtonEnabled: false,
         isOperationInProgress: false
       };
+    },
+    computed: {
+      categorySubtitle1() {
+        let categorySub = '';
+        if (this.categoryName === 'Value Creator') {
+          categorySub = 'Individual that exemplify improvements to delivery outcomes and continuously'
+            + ' achieving higher client satisfaction on the delivery.';
+        } else if (this.categoryName === 'People Developer') {
+          categorySub = 'Individual that exemplify leadership skill of developing other people to do better job as well'
+            + ' as continuously improving oneself technically and functionally in the organization.';
+        } else if (this.categoryName === 'Business Operator') {
+          categorySub = 'Individual that exemplify Delivery Excellence and meet schedule and budget on time.';
+        }
+        return categorySub;
+      },
+
+      categorySubtitle2() {
+        let categorySub = '';
+        if (this.categoryName === 'Value Creator') {
+          categorySub = 'Being able to provide continuous improvement and sustainable process changes within the team.';
+        } else if (this.categoryName === 'People Developer') {
+          categorySub = 'Being able to recognize achievements and contributions within the team.';
+        }
+        return categorySub;
+      }
     },
     watch: {
       isFormValid(value) {
@@ -97,3 +126,9 @@
     }
   };
 </script>
+
+<style lang="scss" scoped>
+  .sub-center {
+    text-align: center;
+  }
+</style>
