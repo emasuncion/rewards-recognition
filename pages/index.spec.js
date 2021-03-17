@@ -9,5 +9,5 @@ describe('Index page', () => {
     wrapper = shallowMount(IndexPage);
     wrapper.vm.openCommendModal();
     expect(wrapper.vm.isStarModalOpen).toBe(true);
-  })
+  });
 });

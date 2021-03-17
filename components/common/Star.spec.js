@@ -14,6 +14,6 @@ describe('Star component', () => {
       propsData
     });
     wrapper.vm.openCommendModal();
-    expect(wrapper.emitted('open')[0][0]).toEqual(propsData.categoryName)
+    expect(wrapper.emitted('open')[0][0]).toEqual(propsData.categoryName);
   });
 });
