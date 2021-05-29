@@ -8,14 +8,10 @@
       >
         <div class="rnr-strapline">
           <div>
-            <em>
-              A chance to be acknowledged;
-            </em>
+            <em> A chance to be acknowledged; </em>
           </div>
           <div>
-            <em>
-              A chance to commend fellow colleagues.
-            </em>
+            <em> A chance to commend fellow colleagues. </em>
           </div>
         </div>
       </v-col>

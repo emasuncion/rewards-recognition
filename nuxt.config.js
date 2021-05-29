@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 import colors from 'vuetify/es5/util/colors'
 
 export default {
@@ -10,20 +12,20 @@ export default {
     title: 'Rewards & Recognition',
     htmlAttrs: {lang: 'en'},
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {
         hid: 'description',
         name: 'description',
-        content: 'Global Education Rewards & Recognition v2 web application'
+        content: 'Global Education Rewards & Recognition v2 web application',
       },
     ],
     link: [
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: '/favicon.ico'
-      }
+        href: '/favicon.ico',
+      },
     ],
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -42,7 +44,26 @@ export default {
     '@nuxtjs/vuetify',
   ],
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/style-resources'],
+  modules: [
+    '@nuxtjs/style-resources',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.API_KEY,
+          authDomain: process.env.AUTH_DOMAIN,
+          projectId: process.env.PROJECT_ID,
+          storageBucket: process.env.STORAGE_BUCKET,
+          messagingSenderId: process.env.MESSAGING_SENDER_ID,
+          appId: process.env.APP_ID,
+          measurementId: process.env.MEASUREMENT_ID,
+        },
+        services: {
+          auth: true,
+        },
+      },
+    ],
+  ],
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/_variables.scss'],
@@ -64,6 +85,6 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
   styleResources: {
-    scss: ['@/assets/scss/*.scss']
-  }
+    scss: ['@/assets/scss/*.scss'],
+  },
 }

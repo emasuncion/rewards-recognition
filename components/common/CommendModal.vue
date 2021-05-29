@@ -83,6 +83,18 @@
     },
     data() {
       return {
+        categorySub1: {
+          valueCreator: `Individual that exemplify improvements to delivery outcomes and continuously
+            achieving higher client satisfaction on the delivery.`,
+          peopleDeveloper: `Individual that exemplify leadership skill of developing other
+            people to do better job as well as continuously improving oneself technically
+            and functionally in the organization.`,
+          businessOperator: 'Individual that exemplify Delivery Excellence and meet schedule and budget on time.'
+        },
+        categorySub2: {
+          valueCreator: 'Being able to provide continuous improvement and sustainable process changes within the team.',
+          peopleDeveloper: 'Being able to recognize achievements and contributions within the team.'
+        },
         description: '',
         isFormValid: false,
         isSubmitButtonEnabled: false,
@@ -91,27 +103,25 @@
     },
     computed: {
       categorySubtitle1() {
-        let categorySub = '';
+        let text = '';
         if (this.categoryName === 'Value Creator') {
-          categorySub = 'Individual that exemplify improvements to delivery outcomes and continuously'
-            + ' achieving higher client satisfaction on the delivery.';
+          text = this.categorySub1.valueCreator;
         } else if (this.categoryName === 'People Developer') {
-          categorySub = 'Individual that exemplify leadership skill of developing other people to do better job as well'
-            + ' as continuously improving oneself technically and functionally in the organization.';
+          text = this.categorySub1.peopleDeveloper;
         } else if (this.categoryName === 'Business Operator') {
-          categorySub = 'Individual that exemplify Delivery Excellence and meet schedule and budget on time.';
+          text = this.categorySub1.businessOperator;
         }
-        return categorySub;
+        return text;
       },
 
       categorySubtitle2() {
-        let categorySub = '';
+        let text = '';
         if (this.categoryName === 'Value Creator') {
-          categorySub = 'Being able to provide continuous improvement and sustainable process changes within the team.';
+          text = this.categorySub2.valueCreator;
         } else if (this.categoryName === 'People Developer') {
-          categorySub = 'Being able to recognize achievements and contributions within the team.';
+          text = this.categorySub2.peopleDeveloper;
         }
-        return categorySub;
+        return text;
       }
     },
     watch: {

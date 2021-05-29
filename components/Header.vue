@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container id="rnr-app-bar-container">
     <v-app-bar
       id="rnr-app-bar-navbar"
       app
