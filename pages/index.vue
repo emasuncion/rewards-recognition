@@ -72,6 +72,8 @@
   export default {
     name: 'Index',
 
+    middleware: ['authenticated'],
+
     data() {
       return {
         categoryName: '',

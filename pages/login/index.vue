@@ -63,6 +63,8 @@
   export default {
     name: 'LoginPage',
 
+    middleware: ['guest'],
+
     data: () => ({
       email: '',
       password: '',
@@ -70,7 +72,11 @@
         email => !!email || 'Email is required',
         email => /.+@.+\..+/.test(email) || 'Email must be valid'
       ],
-      passwordRules: [password => !!password || 'Password is required'],
+      passwordRules: [
+        password => !!password || 'Password is required',
+        password => /^[a-zA-Z0-9\s,-]{3,}$/.test(password)
+          || 'Password must be greater than 3 characters'
+      ],
       error: null,
       valid: false
     }),
@@ -82,16 +88,18 @@
     },
 
     created() {
-      firebase.auth().onAuthStateChanged(user => this.$store.dispatch('fetchUser', user));
+      firebase
+        .auth()
+        .onAuthStateChanged(user => this.$store.dispatch('fetchUser', user));
     },
 
     methods: {
-      async logIn() {
+      async login() {
         try {
           await firebase
             .auth()
             .signInWithEmailAndPassword(this.email, this.password);
-          this.$router.push('/');
+          this.$router.replace('/');
         } catch (e) {
           this.error = e.message;
         }
@@ -99,7 +107,7 @@
 
       validate() {
         if (this.$refs.form.validate()) {
-          this.logIn();
+          this.login();
         }
       }
     }
