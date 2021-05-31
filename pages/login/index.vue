@@ -54,6 +54,12 @@
         </v-card-text>
       </v-card>
     </v-col>
+
+    <CommonDisplayNameModal
+      v-if="isUpdateDisplayNameShowing"
+      v-model="isUpdateDisplayNameShowing"
+      :persistent="true"
+    />
   </v-container>
 </template>
 
@@ -78,6 +84,7 @@
           || 'Password must be greater than 3 characters'
       ],
       error: null,
+      isUpdateDisplayNameShowing: false,
       valid: false
     }),
 
@@ -96,10 +103,15 @@
     methods: {
       async login() {
         try {
-          await firebase
+          const user = await firebase
             .auth()
             .signInWithEmailAndPassword(this.email, this.password);
-          this.$router.replace('/');
+
+          if (!user.user.displayName) {
+            this.isUpdateDisplayNameShowing = true;
+          } else {
+            this.$router.replace('/');
+          }
         } catch (e) {
           this.error = e.message;
         }

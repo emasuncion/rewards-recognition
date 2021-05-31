@@ -27,7 +27,7 @@
 
         <v-spacer />
 
-        <span v-if="showHeaderActions">
+        <span v-if="showHeaderActions" class="d-flex">
           <v-btn
             id="rnr-leaderboard"
             class="mt-md-10 pt-md-5"
@@ -71,6 +71,7 @@
                 v-on="on"
               >
                 <v-icon> mdi-account </v-icon>
+                {{ user.data.displayName }}
               </v-btn>
             </template>
             <v-list>
@@ -225,6 +226,9 @@
 #rnr-star-count,
 #rnr-faq,
 #rnr-account {
+  width: auto;
+  align-self: center;
+
   &:hover {
     color: #fff !important;
   }
