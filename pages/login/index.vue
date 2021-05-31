@@ -44,6 +44,7 @@
                 id="rnr-login-card-form-btn"
                 class="ml-auto mr-4 mt-4"
                 type="submit"
+                :disabled="!valid"
                 @click.prevent="validate"
               >
                 Login
@@ -57,6 +58,8 @@
 </template>
 
 <script>
+  import firebase from 'firebase';
+
   export default {
     name: 'LoginPage',
 
@@ -67,13 +70,36 @@
         email => !!email || 'Email is required',
         email => /.+@.+\..+/.test(email) || 'Email must be valid'
       ],
-      passwordRules: [password => !!password || 'Password is required']
+      passwordRules: [password => !!password || 'Password is required'],
+      error: null,
+      valid: false
     }),
 
+    watch: {
+      valid() {
+        return this.emailRules && this.passwordRules;
+      }
+    },
+
+    created() {
+      firebase.auth().onAuthStateChanged(user => this.$store.dispatch('fetchUser', user));
+    },
+
     methods: {
+      async logIn() {
+        try {
+          await firebase
+            .auth()
+            .signInWithEmailAndPassword(this.email, this.password);
+          this.$router.push('/');
+        } catch (e) {
+          this.error = e.message;
+        }
+      },
+
       validate() {
         if (this.$refs.form.validate()) {
-          this.$router.push('/');
+          this.logIn();
         }
       }
     }

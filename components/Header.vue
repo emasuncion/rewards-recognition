@@ -27,7 +27,7 @@
 
         <v-spacer />
 
-        <span v-if="!$vuetify.breakpoint.smAndDown">
+        <span v-if="!$vuetify.breakpoint.smAndDown && user.isAuthenticated">
           <v-btn
             id="rnr-leaderboard"
             class="mt-md-10 pt-md-5"
@@ -66,6 +66,7 @@
             icon
             :ripple="ripple"
             tile
+            @click.prevent="logout"
           >
             <v-icon>
               mdi-account
@@ -152,15 +153,22 @@
 </template>
 
 <script>
+  import {mapGetters, mapActions} from 'vuex';
+
   export default {
     name: 'Header',
+
     data() {
       return {
         drawer: false,
         group: null,
         ripple: false
       };
-    }
+    },
+
+    computed: {...mapGetters(['user'])},
+
+    methods: {...mapActions(['logout'])}
   };
 </script>
 
