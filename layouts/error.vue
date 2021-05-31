@@ -29,15 +29,13 @@
     },
     head() {
       const title = this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
-      return {
-        title
-      };
+      return {title};
     }
   };
 </script>
 
 <style scoped>
-  h1 {
-    font-size: 20px;
-  }
+h1 {
+  font-size: 20px;
+}
 </style>

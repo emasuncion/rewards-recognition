@@ -40,12 +40,10 @@ const actions = {
 
   async logout() {
     try {
-      await firebase
-        .auth()
-        .signOut();
+      await firebase.auth().signOut();
       this.$router.push('/login');
     } catch (err) {
-      console.warn(err);
+      // do nothing for now
     }
   }
 };

@@ -71,12 +71,14 @@
 <script>
   export default {
     name: 'Index',
+
     data() {
       return {
         categoryName: '',
         isStarModalOpen: false
       };
     },
+
     methods: {
       openCommendModal(categoryName) {
         this.categoryName = categoryName;
@@ -87,21 +89,21 @@
 </script>
 
 <style lang="scss" scoped>
-  .rnr-strapline {
-    font-size: 1.75em;
-    margin-top: 15%;
-    text-align: center;
-    color: $white;
+.rnr-strapline {
+  font-size: 1.75em;
+  margin-top: 15%;
+  text-align: center;
+  color: $white;
 
-    @include xsOnly {
-      font-size: 1.5em;
-      margin-top: 3em;
-    }
+  @include xsOnly {
+    font-size: 1.5em;
+    margin-top: 3em;
   }
+}
 
-  #rnr-star-container {
-    @include xsOnly {
-      padding: 0 !important;
-    }
+#rnr-star-container {
+  @include xsOnly {
+    padding: 0 !important;
   }
+}
 </style>

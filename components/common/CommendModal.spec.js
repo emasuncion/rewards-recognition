@@ -20,8 +20,10 @@ describe('Commend modal component', () => {
           value: false
         }
       });
-      expect(wrapper.vm.categorySubtitle1).toBe('Individual that exemplify improvements to delivery outcomes'
-        + ' and continuously achieving higher client satisfaction on the delivery.');
+      expect(wrapper.vm.categorySubtitle1).toBe(
+        'Individual that exemplify improvements to delivery outcomes'
+          + ' and continuously achieving higher client satisfaction on the delivery.'
+      );
     });
 
     it('should return the correct category subtitle for People Developer', () => {
@@ -32,9 +34,11 @@ describe('Commend modal component', () => {
           value: false
         }
       });
-      expect(wrapper.vm.categorySubtitle1).toBe('Individual that exemplify leadership skill of developing other'
-      + ' people to do better job as well as continuously improving oneself technically and functionally'
-      + ' in the organization.');
+      expect(wrapper.vm.categorySubtitle1).toBe(
+        'Individual that exemplify leadership skill of developing other'
+          + ' people to do better job as well as continuously improving oneself technically and functionally'
+          + ' in the organization.'
+      );
     });
 
     it('should return the correct category subtitle for Business Operator', () => {
@@ -45,8 +49,10 @@ describe('Commend modal component', () => {
           value: false
         }
       });
-      expect(wrapper.vm.categorySubtitle1).toBe('Individual that exemplify Delivery Excellence and meet schedule and'
-        + ' budget on time.');
+      expect(wrapper.vm.categorySubtitle1).toBe(
+        'Individual that exemplify Delivery Excellence and meet schedule and'
+          + ' budget on time.'
+      );
     });
   });
 
@@ -69,9 +75,7 @@ describe('Commend modal component', () => {
 
   describe('method: closeModal', () => {
     it('should be able to close the modal', () => {
-      wrapper = shallowMount(CommendModal, {
-        propsData
-      });
+      wrapper = shallowMount(CommendModal, {propsData});
       wrapper.vm.closeModal();
       expect(wrapper.emitted('input')[0][0]).toBe(false);
     });

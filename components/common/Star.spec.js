@@ -10,9 +10,7 @@ describe('Star component', () => {
   };
 
   it('should be able to open the modal', () => {
-    wrapper = shallowMount(StarComponent, {
-      propsData
-    });
+    wrapper = shallowMount(StarComponent, {propsData});
     wrapper.vm.openCommendModal();
     expect(wrapper.emitted('open')[0][0]).toEqual(propsData.categoryName);
   });
