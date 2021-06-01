@@ -7,7 +7,10 @@
       @input="$emit('input', arguments[0])"
     >
       <v-card class="pt-5 px-10 pb-7">
-        <v-card-title class="px-auto headline d-flex justify-center" primary-title>
+        <v-card-title
+          class="px-auto headline d-flex justify-center"
+          primary-title
+        >
           {{ categoryName }}
         </v-card-title>
         <v-card-subtitle class="d-flex justify-center py-3 sub-center">
@@ -18,21 +21,23 @@
         </v-card-subtitle>
 
         <v-card-text>
-          <v-form
-            ref="form"
-            v-model="isFormValid"
-            :disabled="isOperationInProgress"
-          >
-            <v-combobox
+          <v-form ref="form" v-model="isFormValid">
+            <v-select
+              v-model="selectedNominee"
+              :items="usersList"
+              item-text="name"
+              item-value="email"
+              :rules="listRules"
+              class="mt-4"
               dense
-              filled
-              label="Name"
+              label="Select nominee"
             />
 
             <v-textarea
               ref="descriptionInput"
               v-model="description"
               label="Description"
+              :rules="descriptionRules"
               outlined
               no-resize
               rows="5"
@@ -49,9 +54,10 @@
                 Cancel
               </v-btn>
               <v-btn
-                :disabled="!isSubmitButtonEnabled"
+                :disabled="!isFormValid || isOperationInProgress"
                 :loading="isOperationInProgress"
                 depressed
+                @click.prevent="commend"
               >
                 Commend
               </v-btn>
@@ -64,8 +70,11 @@
 </template>
 
 <script>
+  import {mapGetters, mapActions} from 'vuex';
+
   export default {
-    name: 'ValueCreatorModal',
+    name: 'CommendModal',
+
     props: {
       categoryName: {
         type: String,
@@ -81,27 +90,37 @@
         default: false
       }
     },
+
     data() {
       return {
         categorySub1: {
           valueCreator: `Individual that exemplify improvements to delivery outcomes and continuously
-            achieving higher client satisfaction on the delivery.`,
+        achieving higher client satisfaction on the delivery.`,
           peopleDeveloper: `Individual that exemplify leadership skill of developing other
-            people to do better job as well as continuously improving oneself technically
-            and functionally in the organization.`,
-          businessOperator: 'Individual that exemplify Delivery Excellence and meet schedule and budget on time.'
+        people to do better job as well as continuously improving oneself technically
+        and functionally in the organization.`,
+          businessOperator:
+            'Individual that exemplify Delivery Excellence and meet schedule and budget on time.'
         },
         categorySub2: {
-          valueCreator: 'Being able to provide continuous improvement and sustainable process changes within the team.',
-          peopleDeveloper: 'Being able to recognize achievements and contributions within the team.'
+          valueCreator:
+            'Being able to provide continuous improvement and sustainable process changes within the team.',
+          peopleDeveloper:
+            'Being able to recognize achievements and contributions within the team.'
         },
         description: '',
+        descriptionRules: [desc => !!desc || 'Description is required'],
         isFormValid: false,
         isSubmitButtonEnabled: false,
-        isOperationInProgress: false
+        isOperationInProgress: false,
+        listRules: [list => !!list || 'Nominee is required'],
+        selectedNominee: ''
       };
     },
+
     computed: {
+      ...mapGetters(['user', 'usersList']),
+
       categorySubtitle1() {
         let text = '';
         if (this.categoryName === 'Value Creator') {
@@ -124,12 +143,34 @@
         return text;
       }
     },
+
     watch: {
-      isFormValid(value) {
-        this.isSubmitButtonEnabled = value;
+      isFormValid() {
+        return this.listRules && this.descriptionRules;
       }
     },
+
     methods: {
+      ...mapActions(['saveCommendation']),
+
+      commend() {
+        this.isOperationInProgress = true;
+
+        const param = {
+          data: {
+            category: this.categoryName,
+            value: this.description,
+            commended_by: this.user.data.displayName
+          },
+          user: this.selectedNominee
+        };
+        this.saveCommendation(param);
+
+        this.isOperationInProgress = false;
+        this.selectedNominee = '';
+        this.description = '';
+      },
+
       closeModal() {
         this.$emit('input', false);
       }
@@ -138,7 +179,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .sub-center {
-    text-align: center;
-  }
+.sub-center {
+  text-align: center;
+}
 </style>

@@ -94,9 +94,9 @@ const actions = {
 
       dispatch('getUsers');
 
-      commit('SET_USER_DETAILS', doc.value);
+      commit('SET_USER_DETAILS', doc.commendation);
       commit('SET_CURRENT_STARS', doc.currentStars);
-      commit('SET_TOTAL_STARS', doc.value.length);
+      commit('SET_TOTAL_STARS', doc.commendation.length);
     } catch (err) {
       commit('SET_ERROR', err.message);
     }
@@ -136,10 +136,15 @@ const actions = {
     let doc = snapshot.data();
 
     try {
-      doc.value.forEach(async val => {
+      doc.value.findIndex(async val => {
+        if (val.email === state.user.data.email) {
+          return true;
+        }
+
         if (val.email !== state.user.data.email) {
           await usersRef.update({value: firebase.firestore.FieldValue.arrayUnion(data)});
         }
+        return true;
       });
 
       snapshot = await usersRef.get();
@@ -147,6 +152,26 @@ const actions = {
       commit('SET_USERS_LIST', doc.value);
     } catch (err) {
       commit('SET_ERROR', err.message);
+    }
+  },
+
+  async saveCommendation({commit}, {data, user}) {
+    commit('SET_ERROR', null);
+
+    const userRef = this.$fire.firestore.collection('users').doc(user);
+    const snapshot = await userRef.get();
+    if (!snapshot.exists) {
+      userRef.set({
+        commendation: firebase.firestore.FieldValue.arrayUnion(data),
+        currentStars: 1
+      });
+    } else {
+      const doc = snapshot.data();
+
+      userRef.update({
+        commendation: firebase.firestore.FieldValue.arrayUnion(data),
+        currentStars: doc.currentStars + 1
+      });
     }
   },
 
