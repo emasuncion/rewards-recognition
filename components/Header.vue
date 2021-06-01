@@ -34,6 +34,8 @@
             color="#999"
             :ripple="ripple"
             text
+            tag="nuxt-link"
+            to="/leaderboard"
           >
             Leaderboard
           </v-btn>
