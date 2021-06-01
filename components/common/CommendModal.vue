@@ -66,6 +66,24 @@
         </v-card-text>
       </v-card>
     </CommonStarModal>
+
+    <v-snackbar
+      v-model="snackbar"
+      :multi-line="multiLine"
+      :timeout="timeout"
+    >
+      {{ snackbarText }}
+      <template #action="{attrs}">
+        <v-btn
+          color="green"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -114,7 +132,11 @@
         isSubmitButtonEnabled: false,
         isOperationInProgress: false,
         listRules: [list => !!list || 'Nominee is required'],
-        selectedNominee: ''
+        selectedNominee: '',
+        snackbarText: '',
+        multiLine: true,
+        snackbar: false,
+        timeout: 2000
       };
     },
 
@@ -153,7 +175,7 @@
     methods: {
       ...mapActions(['saveCommendation']),
 
-      commend() {
+      async commend() {
         this.isOperationInProgress = true;
 
         const param = {
@@ -164,11 +186,11 @@
           },
           user: this.selectedNominee
         };
-        this.saveCommendation(param);
+        this.snackbarText = await this.saveCommendation(param);
 
         this.isOperationInProgress = false;
-        this.selectedNominee = '';
-        this.description = '';
+        this.snackbar = true;
+        this.$refs.form.reset();
       },
 
       closeModal() {

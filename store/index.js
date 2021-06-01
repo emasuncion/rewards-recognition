@@ -155,7 +155,7 @@ const actions = {
     }
   },
 
-  async saveCommendation({commit}, {data, user}) {
+  async saveCommendation({commit, dispatch}, {data, user}) {
     commit('SET_ERROR', null);
 
     const userRef = this.$fire.firestore.collection('users').doc(user);
@@ -173,6 +173,8 @@ const actions = {
         currentStars: doc.currentStars + 1
       });
     }
+    dispatch('fetchUserDetails');
+    return 'Commendation saved!';
   },
 
   async logout() {
