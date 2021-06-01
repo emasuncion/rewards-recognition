@@ -1,6 +1,6 @@
-require('dotenv').config()
+import colors from 'vuetify/es5/util/colors';
 
-import colors from 'vuetify/es5/util/colors'
+require('dotenv').config();
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -17,16 +17,16 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Global Education Rewards & Recognition v2 web application',
-      },
+        content: 'Global Education Rewards & Recognition v2 web application'
+      }
     ],
     link: [
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: '/favicon.ico',
-      },
-    ],
+        href: '/favicon.ico'
+      }
+    ]
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/scss/_colors.scss', '@/assets/scss/_mediaQueryMixins.scss'],
@@ -42,28 +42,28 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/firebase'
   ],
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/style-resources',
-    [
-      '@nuxtjs/firebase',
-      {
-        config: {
-          apiKey: process.env.API_KEY,
-          authDomain: process.env.AUTH_DOMAIN,
-          projectId: process.env.PROJECT_ID,
-          storageBucket: process.env.STORAGE_BUCKET,
-          messagingSenderId: process.env.MESSAGING_SENDER_ID,
-          appId: process.env.APP_ID,
-          measurementId: process.env.MEASUREMENT_ID,
-        },
-        services: {
-          auth: true
-        },
-      },
-    ],
-  ],
+  modules: ['@nuxtjs/style-resources'],
+
+  firebase: {
+    lazy: false,
+    config: {
+      apiKey: process.env.API_KEY,
+      authDomain: process.env.AUTH_DOMAIN,
+      projectId: process.env.PROJECT_ID,
+      storageBucket: process.env.STORAGE_BUCKET,
+      messagingSenderId: process.env.MESSAGING_SENDER_ID,
+      appId: process.env.APP_ID,
+      measurementId: process.env.MEASUREMENT_ID
+    },
+    services: {
+      auth: {persistence: 'session'},
+      firestore: true
+    }
+  },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/_variables.scss'],
@@ -77,14 +77,12 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-        },
-      },
-    },
+          success: colors.green.accent3
+        }
+      }
+    }
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  styleResources: {
-    scss: ['@/assets/scss/*.scss'],
-  },
-}
+  styleResources: {scss: ['@/assets/scss/*.scss']}
+};

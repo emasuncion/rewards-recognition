@@ -81,6 +81,10 @@
       };
     },
 
+    created() {
+      this.$store.dispatch('fetchUserDetails');
+    },
+
     methods: {
       openCommendModal(categoryName) {
         this.categoryName = categoryName;

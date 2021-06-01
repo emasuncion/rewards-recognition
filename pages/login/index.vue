@@ -64,8 +64,6 @@
 </template>
 
 <script>
-  import firebase from 'firebase';
-
   export default {
     name: 'LoginPage',
 
@@ -95,17 +93,16 @@
     },
 
     created() {
-      firebase
-        .auth()
-        .onAuthStateChanged(user => this.$store.dispatch('fetchUser', user));
+      this.$fire.auth.onAuthStateChanged(user => this.$store.dispatch('fetchUser', user));
     },
 
     methods: {
       async login() {
         try {
-          const user = await firebase
-            .auth()
-            .signInWithEmailAndPassword(this.email, this.password);
+          const user = await this.$fire.auth.signInWithEmailAndPassword(
+            this.email,
+            this.password
+          );
 
           if (!user.user.displayName) {
             this.isUpdateDisplayNameShowing = true;
