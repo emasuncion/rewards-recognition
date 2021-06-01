@@ -64,6 +64,8 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex';
+
   export default {
     name: 'LoginPage',
 
@@ -93,10 +95,12 @@
     },
 
     created() {
-      this.$fire.auth.onAuthStateChanged(user => this.$store.dispatch('fetchUser', user));
+      this.$fire.auth.onAuthStateChanged(user => this.fetchUser(user));
     },
 
     methods: {
+      ...mapActions(['fetchUser']),
+
       async login() {
         try {
           const user = await this.$fire.auth.signInWithEmailAndPassword(

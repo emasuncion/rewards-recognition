@@ -46,7 +46,7 @@
             tile
           >
             <v-icon> mdi-star </v-icon>
-            0
+            {{ currentStars }}
           </v-btn>
           <v-btn
             id="rnr-faq"
@@ -145,7 +145,7 @@
               tile
             >
               <v-icon> mdi-star </v-icon>
-              0
+              {{ currentStars }}
             </v-btn>
           </v-list-item>
           <v-list-item>
@@ -179,7 +179,9 @@
 </template>
 
 <script>
-  import {mapGetters, mapActions} from 'vuex';
+  import {
+    mapState, mapGetters, mapActions
+  } from 'vuex';
 
   export default {
     name: 'Header',
@@ -197,6 +199,8 @@
     },
 
     computed: {
+      ...mapState(['currentStars']),
+
       ...mapGetters(['user']),
 
       showHeaderActions() {

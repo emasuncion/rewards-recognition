@@ -69,6 +69,8 @@
 </template>
 
 <script>
+  import {mapActions} from 'vuex';
+
   export default {
     name: 'Index',
 
@@ -82,10 +84,12 @@
     },
 
     created() {
-      this.$store.dispatch('fetchUserDetails');
+      this.fetchUserDetails();
     },
 
     methods: {
+      ...mapActions(['fetchUserDetails']),
+
       openCommendModal(categoryName) {
         this.categoryName = categoryName;
         this.isStarModalOpen = true;
