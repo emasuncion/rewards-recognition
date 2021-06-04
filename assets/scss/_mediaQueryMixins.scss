@@ -1,28 +1,35 @@
 $phone: 600px;
-$tabletMinWidth: 600px;
-$tabletMaxWidth: 960px;
+$tabletMinWidth: 601px;
 $laptopMinWidth: 960px;
-$laptopMaxWidth: 1264px;
 $desktopMinWidth: 1264px;
-$desktopMaxWidth: 1904px;
 $ultrawideMinWidth: 1904px;
 
 @mixin xsOnly {
-  @media (max-width: $phone) { @content; }
+  @media (max-width: $phone) {
+    @content;
+  }
 }
 
 @mixin smOnly {
-  @media (min-width: $tabletMinWidth) and (max-width: $tabletMaxWidth - 1) { @content; }
+  @media (min-width: $tabletMinWidth) and (max-width: $laptopMinWidth - 1) {
+    @content;
+  }
 }
 
 @mixin mdOnly {
-  @media (min-width: $laptopMinWidth) and (max-width: $laptopMaxWidth - 1) { @content; }
+  @media (min-width: $laptopMinWidth) and (max-width: $desktopMinWidth - 1) {
+    @content;
+  }
 }
 
 @mixin lgOnly {
-  @media (min-width: $desktopMinWidth) and (max-width: $desktopMaxWidth - 1) { @content; }
+  @media (min-width: $desktopMinWidth) and (max-width: $ultrawideMinWidth - 1) {
+    @content;
+  }
 }
 
 @mixin ultraOnly {
-  @media (min-width: $ultrawideMinWidth) { @content; }
+  @media (min-width: $ultrawideMinWidth) {
+    @content;
+  }
 }
